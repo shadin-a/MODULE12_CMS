@@ -6,6 +6,7 @@ const fs =require("fs");
 
 
 // QUESTIONS THAT ARE REQUIRED BY USER STORY HERE
+dbInterface = new MyDatabaseInterface();
 
 //MAIN MENU QUESTIONS
 // view all departments,
@@ -21,6 +22,13 @@ const fs =require("fs");
 //QUESTIONS TO ADD A ROLE
 
 //QUESTIONS TO ADD AN EMPLOYEE
+
+if (they want to fetch all emplyoees) {
+    allEmployees = dbInterface.getAllEmployees();
+    // maybe you wanna format htat
+    console.log(allEmployees);
+
+}
 
 //QUESTIONS TO UPDATE AN EMPLOYEE
 
