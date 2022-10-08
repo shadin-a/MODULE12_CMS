@@ -1,33 +1,30 @@
 //INVOKE SQL
+import mysql from 'mysql2';
 
 //CONNECT SQL TO DATABASE
-
-
-
-
 export class MyDatabaseInterface {
 
-    //     // private funciton, this only gets called WITHIN this class
-    // function getConnection() {
-    //     return mysql.createConnection({
-    //       host: "localhost",
-    //       user: "yourusername",
-    //       password: "yourpassword",
-    //       database: "mydb"
-    //     });
-    // }
+    //// private funciton, this only gets called WITHIN this class
+     getConnection() {
+        return mysql.createConnection({
+          host: "localhost",
+          user: "shadin",
+          password: "password",
+          database: "ASSIGNMENT"
+        });
+    }
 
-    //     // public function -> clients of this class can call this function
-    // function getAllEmployees() {
-    //     con = self.getConnection()
-    //     con.connect();
-    //     result = con.query('SELECT * FROM MYDATABASE WHERE ROLE == EMPLYOEE');
-    //     console.log(result);
-    //     return result;
-    // }
-
-    getAllDepartments() {
-        return "hello world";
+ //// public function -> clients of this class can call this function
+    showAllDepartments() {
+        var connection = this.getConnection()
+        var sql = 'SELECT * FROM departments';
+        connection.query(sql, (error, results, fields) => {
+        if (error) {
+            return console.error(error.message);
+        }
+        console.log(results);
+    });
+    
     }
 
 //     function insertEmployee(name, role, etc....){

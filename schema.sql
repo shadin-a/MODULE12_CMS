@@ -15,7 +15,7 @@ CREATE TABLE `role` (
   `role_id` INT,
   `role_title` VARCHAR(30),
   `role_salary` DECIMAL,
-  `department_id` INT NOT NULL,
+  `department_id` INT NOT NULL
 )
 --SYNTAX TO CREAT EMPLOYEE IN COMMAND LINE
 CREATE TABLE `employee` (
@@ -23,5 +23,13 @@ CREATE TABLE `employee` (
   `first_name` VARCHAR(30),
   `last_name` DECIMAL,
   `role_id` INT NOT NULL,
-  `manager_id` INT,
+  `manager_id` INT
 )
+
+--SYNTAX TO INSERT
+In command line:
+1. mysql
+2. SHOW DATABASES;
+3. USE assignments 
+4. SHOW TABLES
+5. enter your sql 

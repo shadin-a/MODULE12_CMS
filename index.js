@@ -93,14 +93,12 @@ function init() {
     
     inquirer.prompt(mainMenuQuestions)
         .then(answer => {
-            console.table(answer);
+            //console.table(answer);
         
     //USE SWITCH SYNTAX TO SELECT OPTIONS
     switch(answer.menu){
         case "View all departments":
-            var departments = db.getAllDepartments();
-            console.log(departments);
-
+            db.showAllDepartments();
         return
     }
 
