@@ -99,7 +99,8 @@ function init() {
     switch(answer.menu){
         case "View all departments":
             db.showAllDepartments();
-        return
+        case "View all roles":
+            db.showAllRoles();
     }
 
 })
