@@ -24,7 +24,7 @@ const departmentQuestions = [
         type: "input",
         message: "What is the name of your new department?",
         name: "department_name",
-        default: "Deperatment Name Missing"
+        default: "Department Name Missing"
     },
 
 ]
@@ -101,6 +101,10 @@ function init() {
             db.showAllDepartments();
         case "View all roles":
             db.showAllRoles();
+        case "View all employees":
+            db.showAllEmployees();
+            case "Add a department";
+
     }
 
 })

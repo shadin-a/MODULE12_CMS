@@ -22,18 +22,29 @@ export class MyDatabaseInterface {
         if (error) {
             return console.error(error.message);
         }
-        console.log(results);
+        console.table(results);
     });
     
     }
     showAllRoles(){
         var connection = this.getConnection()
-        var sql = 'SELECT * FROM roles';
+        var sql = 'SELECT * FROM role';
         connection.query(sql, (error, results, fields) => {
         if (error) {
             return console.error(error.message);
         }
-        console.log(results);
+        console.table(results);
+    });
+
+    }
+    showAllEmployees(){
+        var connection = this.getConnection()
+        var sql = 'SELECT * FROM employee';
+        connection.query(sql, (error, results, fields) => {
+        if (error) {
+            return console.error(error.message);
+        }
+        console.table(results);
     });
 
     }
