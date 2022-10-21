@@ -99,11 +99,21 @@ function init() {
     switch(answer.menu){
         case "View all departments":
             db.showAllDepartments();
+            break;
         case "View all roles":
             db.showAllRoles();
+            break;
         case "View all employees":
             db.showAllEmployees();
-            case "Add a department";
+            break;
+        case "Add a department":
+            inquirer
+            .prompt(departmentQuestions)
+            .then(answers =>{  
+                const newDeptName = answers.department_name
+            db.addDepartment();
+            });
+        break;
 
     }
 

@@ -48,6 +48,25 @@ export class MyDatabaseInterface {
     });
 
     }
+    addDepartment(answers){
+    
+        var connection = this.getConnection()
+        var sql = 'INSERT INTO departments (dept_name) VALUES (?)'
+        connection.query(sql, newDeptName, (err, results) => {
+            if (err) {throw err}
+        });
+       
+        
+    }
+
+    updateEmployee(){
+        var connection = this.getConnection()
+        var sql = 'INSERT INTO departments (dept_name) VALUES (?)'
+        //1. get employees
+        //2. get all roles.
+        //use inquirer which they want to chnage emp or role?
+        //4. insert new role id/title into 
+    }
 
 //     function insertEmployee(name, role, etc....){
 //     con = self.getConnection()
