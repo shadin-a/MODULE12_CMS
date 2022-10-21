@@ -2,8 +2,9 @@
 import inquirer from 'inquirer';
 import fs from "fs";
 import {MyDatabaseInterface} from './server.js';
-const db = new MyDatabaseInterface();
+import db from './connection.js';
 //GLOBAL VARIABLES
+var server = new MyDatabaseInterface;
 var roles = [];
 
 //// QUESTIONS THAT ARE REQUIRED BY USER STORY HERE
@@ -46,7 +47,7 @@ const roleQuestions =[
         type: "list",
         message:"What department does this new role belong to?",
         name: "role_department",
-        choices: ["View all departments", "View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"]
+        choices: []
     },
 ]
 //QUESTIONS TO ADD AN EMPLOYEE
@@ -66,8 +67,8 @@ const employeeQuestions = [
     {
         type: "list",
         message:"What is the role of the new employee?",
-        name: "employee_first_name",
-        choices: [roles], // TO DO: create variable to hold roles...database
+        name: "employee_role",
+        choices: [roles], 
     },
     {
         type: "input",
@@ -97,35 +98,91 @@ function init() {
         
     //USE SWITCH SYNTAX TO SELECT OPTIONS
     switch(answer.menu){
+        //SHOWING THINGS
         case "View all departments":
-            db.showAllDepartments();
+            server.showAllDepartments();
             break;
         case "View all roles":
-            db.showAllRoles();
+            server.showAllRoles();
             break;
         case "View all employees":
-            db.showAllEmployees();
+            server.showAllEmployees();
             break;
+            //ADDING THINGS
         case "Add a department":
             inquirer
             .prompt(departmentQuestions)
             .then(answers =>{  
-                const newDeptName = answers.department_name
-            db.addDepartment();
+                server.addDepartment(answers);
             });
         break;
+        case "Add a role":    
+        test();
+        // inquirer
+        //     .prompt(roleQuestions)
+        //     .then(answers =>{  
+        //         db.addRole(answers);
+        //     });
+        break;
+        case "Add an employee":
+            inquirer
+            .prompt(employeeQuestions)
+            .then(answers =>{  
+                server.addEmployee(answers);
+            });
+        break;
+            //UPDATING THINGS
 
     }
 
 })
 };
-//FUNCTIONS TO SHOW EACH OPTIONS (SO MANY)
-// if (they want to fetch all emplyoees) {
-//     allEmployees = dbInterface.getAllEmployees();
-//     // maybe you wanna format htat
-//     console.log(allEmployees);
 
-//FUNCTIONS TO ADD EACH OPTIONS
+async function test () {
+    const departmentData = await db.query('SELECT * FROM departments;')
+    const deptChoices = departmentData.map((department) =>  {
+        return {
+            name: department.department_name,
+            value: department.id
+        }
+    })
+    console.log(deptChoices);
+
+        const answers = await inquirer
+        .prompt([
+            {
+                type: "input",
+                message:"What is the name of the new role?",
+                name: "role_name",
+                default: "Missing role name",
+            },
+            {
+                type: "input",
+                message:"What is the salary for the new role?",
+                name: "role_salary",
+                default: "Missing salary",
+            },
+            {
+                type: "list",
+                message:"What department does this new role belong to?",
+                name: "role_department",
+                choices: deptChoices
+            },
+        ])
+        .then(answers =>{  
+            server.addRole(answers);
+        });
+
+    }
+  
 
 //ACTION 👏 CODE 👏
 init()
+
+
+
+
+// the steps for adding a role:
+// 1. get the departments
+// 2. link the ids from the depatments to the role?? somehow??
+// 3. put the input/user input into a pretty sql command
