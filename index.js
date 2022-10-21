@@ -14,7 +14,7 @@ const mainMenuQuestions =[
         type: "list",
         message: "What would you like to do today?",
         name: "menu",
-        choices: ["View all departments", "View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "Update an employee role"],
+        choices: ["View all departments", "View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "Update an employee role", 'I want to leave'],
     },
   
 ]
@@ -83,8 +83,16 @@ const employeeQuestions = [
 const employeeUpdateQuestions = [
     {
         type: "list",
-        name: "new_role",
+        message: "Which employee are we updating?",
+        name: "employee_name",
         choices: [roles],
+    },
+    {
+        type: "list",
+        message: "What is the new role?",
+        name: "employee_role",
+        choices: [roles],
+
     }
 ]
 
@@ -101,12 +109,21 @@ function init() {
         //SHOWING THINGS
         case "View all departments":
             server.showAllDepartments();
+            setTimeout(() => {
+                init();
+            }, 1000);
             break;
         case "View all roles":
             server.showAllRoles();
+            setTimeout(() => {
+                init();
+            }, 1000);
             break;
         case "View all employees":
             server.showAllEmployees();
+            setTimeout(() => {
+                init();
+            }, 1000);
             break;
             //ADDING THINGS
         case "Add a department":
@@ -114,31 +131,33 @@ function init() {
             .prompt(departmentQuestions)
             .then(answers =>{  
                 server.addDepartment(answers);
+                setTimeout(() => {
+                    init();
+                }, 1000);
             });
+           
         break;
         case "Add a role":    
-        test();
-        // inquirer
-        //     .prompt(roleQuestions)
-        //     .then(answers =>{  
-        //         db.addRole(answers);
-        //     });
+        getDeptForRole();
         break;
         case "Add an employee":
-            inquirer
-            .prompt(employeeQuestions)
-            .then(answers =>{  
-                server.addEmployee(answers);
-            });
+        getRolesForEmployee();
         break;
             //UPDATING THINGS
-
+        case "Update an employee role":
+        getRolesAndEmployeesForQuestioning();
+        break;
+            //ABANDON SHIP
+        case "I want to leave":
+            console.log('But the world is quiet here...')
+            process.exit();
+        break;
     }
 
 })
 };
-
-async function test () {
+//GETTING DEPARTMENT CHOICES FOR THE ROLE QUESTIONS
+async function getDeptForRole () {
     const departmentData = await db.query('SELECT * FROM departments;')
     const deptChoices = departmentData.map((department) =>  {
         return {
@@ -171,11 +190,105 @@ async function test () {
         ])
         .then(answers =>{  
             server.addRole(answers);
+            setTimeout(() => {
+                init();
+            }, 1000);
         });
+       
 
     }
-  
+//GETTING ROLE CHOICES FOR EMPLOYEE QUESTIONS
+  async function getRolesForEmployee() {
+    const roleData = await db.query('SELECT * FROM role;')
+    const roleChoices = roleData.map((role) => {
+        return {
+            name: role.role_title,
+            value: role.id
+        }
+    })
+    console.log(roleChoices);
 
+    const answers = await inquirer
+    .prompt([
+        {
+            type: "input",
+            message:"What is the first name of the new employee?",
+            name: "employee_first_name",
+            default: "Missing employee first name",
+        },
+        {
+            type: "input",
+            message:"What is the last name of the new employee?",
+            name: "employee_last_name",
+            default: "Missing employee last name",
+        },
+        {
+            type: "list",
+            message:"What is the role of the new employee?",
+            name: "employee_role",
+            choices: roleChoices, 
+        },
+        {
+            type: "input",
+            message:"What is the manager ID?",
+            name: "manager_id",
+            default: "Missing manager id",
+        },
+    
+    ])
+    .then(answers =>{  
+        server.addEmployee(answers);
+    });
+    setTimeout(() => {
+        init();
+    }, 1000);
+  }
+
+  //GET ROLE CHOICES FOR UPDATE AND ALL THE EMPLOYEES TO UPDATE
+  async function getRolesAndEmployeesForQuestioning() {
+    const roleData = await db.query('SELECT * FROM role;')
+    const roleChoices = roleData.map((role) => {
+        return {
+            name: role.role_title,
+            value: role.id
+        }
+    })
+    console.log(roleChoices);
+
+    const employeeData = await db.query(`SELECT * FROM employee;`)
+    const employeeChoices = employeeData.map((employee) => {
+        return {
+            name: employee.first_name, 
+            value: employee.id
+
+        }
+    })
+    console.log(employeeChoices)
+   
+
+    const answers = await inquirer
+    .prompt([
+        {
+            type: "list",
+            message: "Which employee are we updating?",
+            name: "employee_name",
+            choices: employeeChoices,
+        },
+        {
+            type: "list",
+            message: "What is the new role?",
+            name: "employee_role",
+            choices: roleChoices,
+    
+        }
+    ])
+    .then(answers =>{  
+        server.updateEmployee(answers);
+    });
+        setTimeout(() => {
+            init();
+        }, 1000);
+  }
 //ACTION 👏 CODE 👏
 init()
 
