@@ -92,12 +92,14 @@ export class MyDatabaseInterface {
         var newRole = answers.employee_role;
 
         var connection = this.getConnection()
-        var sql = `UPDATE employees SET role_id = ? WHERE first_name = ?';`
+        var sql = `UPDATE employee SET role_id = ? WHERE id = ?;`
+        console.log(selectedEmployee);
+        console.log(newRole);
         connection.query(sql, [newRole, selectedEmployee],  (err, results) => {
             if (err) {throw err}
         });
     }
-    //UPDATE SQL TABLES FOR ID
+    //UPDATE SQL TABLES FOR ID$
 
     // updateEmployee(){
     //     var connection = this.getConnection()
