@@ -99,27 +99,4 @@ export class MyDatabaseInterface {
             if (err) {throw err}
         });
     }
-    //UPDATE SQL TABLES FOR ID$
-
-    // updateEmployee(){
-    //     var connection = this.getConnection()
-    //     var sql = 'INSERT INTO departments (dept_name) VALUES (?)'
-    //     //1. get employees
-    //     //2. get all roles.
-    //     //use inquirer which they want to chnage emp or role?
-    //     //4. insert new role id/title into 
-    // }
-
-//     function insertEmployee(name, role, etc....){
-//     con = self.getConnection()
-//     con.connect();
-//     result = con.query(insert into my table (bla the data i forget the syntax));
-//     }
-// }
-
-    // test 1 -> empty database, run this, it should call it w/o error and return an empty array
-    // test 2 -> put in employees, run this, it should return an arra of employee data
-    // test 3 -> put in an employee and a deparartment (or soemthing else), it should still ONLY reutnr employees
-
-
 }

@@ -27,15 +27,6 @@ CREATE TABLE employee (
    FOREIGN KEY (role_id) references role(id)
 )
 
---SYNTAX TO INSERT
--- In command line:
--- 1. mysql
--- 2. SHOW DATABASES;
--- 3. USE assignments 
--- 4. SHOW TABLES
--- 5. enter your sql 
--- 6. DESC ROLE
-
 INSERT INFO
 INSERT INTO ROLE (role_id, role_title, role_salary, department_id)
 VALUES (101, "Manager", 5, 100) 
