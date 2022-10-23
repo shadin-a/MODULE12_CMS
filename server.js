@@ -93,8 +93,6 @@ export class MyDatabaseInterface {
 
         var connection = this.getConnection()
         var sql = `UPDATE employee SET role_id = ? WHERE id = ?;`
-        console.log(selectedEmployee);
-        console.log(newRole);
         connection.query(sql, [newRole, selectedEmployee],  (err, results) => {
             if (err) {throw err}
         });
