@@ -11,7 +11,7 @@
 
   ## DESCRIPTION
   Use Inquirer to access a SQL database and view, add, and update everything from deptartments and roles to employees in your company!
-  </br> App Walkthrough: https://drive.google.com/file/d/1OXEwXNRrQzu8fOjJpujsNiXXOngOnyf-/view?usp=sharing
+  </br> App Walkthrough: https://drive.google.com/file/d/1Q1Qb7wkyVJlKF3FaTOxfdx_9gteL1nGx/view?usp=sharing
 
   ## INSTALLATION
  Before running this application, make sure to install Inquirer, and Node.
