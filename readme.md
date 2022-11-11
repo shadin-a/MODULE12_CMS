@@ -20,7 +20,7 @@
 No tests for this iteration of Team Datbase. Check again soon!
 
   ## USAGE
-  ![App in Use](module12_screenshot.png)
+  ![App in Use](assets/images/module12_screenshot.png)
 
   ## FAQ
   * shadin.alarab@gmail.com
