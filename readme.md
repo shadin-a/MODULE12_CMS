@@ -22,6 +22,7 @@ No tests for this iteration of Team Datbase. Check again soon!
   ## USAGE
   To run the application, open a terminal in the same location as the project and run:
       node index.js
+      
   ![App in Use](assets/images/module12_screenshot.png)
 
   ## FAQ
