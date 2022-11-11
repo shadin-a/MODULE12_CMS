@@ -11,7 +11,7 @@
 
   ## DESCRIPTION
   Use Inquirer to access a SQL database and view, add, and update everything from deptartments and roles to employees in your company!
-  App Walkthrough: https://drive.google.com/file/d/1OXEwXNRrQzu8fOjJpujsNiXXOngOnyf-/view?usp=sharing
+  </br> App Walkthrough: https://drive.google.com/file/d/1OXEwXNRrQzu8fOjJpujsNiXXOngOnyf-/view?usp=sharing
 
   ## INSTALLATION
  Before running this apllication, make sure to install Inquirer, and Node.
@@ -20,6 +20,8 @@
 No tests for this iteration of Team Datbase. Check again soon!
 
   ## USAGE
+  To run the application, open a terminal in the same location as the project and run:
+      node index.js
   ![App in Use](assets/images/module12_screenshot.png)
 
   ## FAQ
