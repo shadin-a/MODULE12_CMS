@@ -14,7 +14,7 @@
   </br> App Walkthrough: https://drive.google.com/file/d/1OXEwXNRrQzu8fOjJpujsNiXXOngOnyf-/view?usp=sharing
 
   ## INSTALLATION
- Before running this apllication, make sure to install Inquirer, and Node.
+ Before running this application, make sure to install Inquirer, and Node.
 
   ## TESTS
 No tests for this iteration of Team Datbase. Check again soon!
@@ -24,6 +24,7 @@ No tests for this iteration of Team Datbase. Check again soon!
   
       node index.js
       
+  
   ![App in Use](assets/images/module12_screenshot.png)
 
   ## FAQ
