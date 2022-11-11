@@ -1,7 +1,7 @@
 //REQUIRE LIBRARIES
 import inquirer from 'inquirer';
 import fs from "fs";
-import {MyDatabaseInterface} from './server.js';
+import {MyDatabaseInterface} from './helpers/server.js';
 import db from './config/connection.js';
 //GLOBAL VARIABLES
 var server = new MyDatabaseInterface;
